@@ -7,7 +7,7 @@ colNames = c("Date", "Time", "GlobalActivePower", "GlobalReactivePower", "Voltag
 colClasses = c("character", "character", rep("numeric",7) )
 
 ##read file
-DataFile <- read.table(fn, header=TRUE, sep=";", col.names=colNames, colClasses=colClasses, na.strings="?")
+DataFile <- read.table(FileName, header=TRUE, sep=";", col.names=colNames, colClasses=colClasses, na.strings="?")
 
 ##convert to Date type, then filter
 DataFile$Date = as.Date(DataFile$Date, format="%d/%m/%Y")
