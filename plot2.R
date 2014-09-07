@@ -7,7 +7,7 @@ colClasses = c("character", "character", rep("numeric",7))
 
 DataFile <- read.table(FileName, header=TRUE, sep=";", col.names=colNames, colClasses=colClasses, na.strings="?")
 
-DataFile$date = as.Date(DataFile$Date, format="%d/%m/%Y")
+DataFile$Date = as.Date(DataFile$Date, format="%d/%m/%Y")
 DataFile = DataFile[DataFile$Date >= as.Date("2007-02-01") & DataFile$Date<=as.Date("2007-02-02"),]
 
 png(filename="plot2.png", width=480, height=480, units="px")
