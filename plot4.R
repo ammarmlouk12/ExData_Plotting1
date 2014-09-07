@@ -18,11 +18,11 @@ png(filename="plot4.png", width=480, height=480, units="px")
 par(mfrow=c(2,2))
 
 ##1st 
-plot(DataFile$globalActivePower, type="l",xaxt="n",xlab="", ylab="Global Active Power")
+plot(DataFile$GlobalActivePower, type="l",xaxt="n",xlab="", ylab="Global Active Power")
 axis(1, at=c(1, as.integer(nrow(DataFile)/2), nrow(DataFile)), labels=c("Thu", "Fri", "Sat"))
 
 ##2nd
-plot(DataFile$voltage, type="l",xaxt="n",xlab="DateTime", ylab="Voltage")
+plot(DataFile$Voltage, type="l",xaxt="n",xlab="DateTime", ylab="Voltage")
 axis(1, at=c(1, as.integer(nrow(DataFile)/2), nrow(DataFile)), labels=c("Thu", "Fri", "Sat"))
 
 
