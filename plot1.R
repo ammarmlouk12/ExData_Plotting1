@@ -10,7 +10,7 @@ colClasses = c("character", "character", rep("numeric",7) )
 DataFile <- read.table(fn, header=TRUE, sep=";", col.names=colNames, colClasses=colClasses, na.strings="?")
 
 ##convert to Date type, then filter
-DataFile$Date = as.Date(df$date, format="%d/%m/%Y")
+DataFile$Date = as.Date(DataFile$Date, format="%d/%m/%Y")
 DataFile = DataFile[DataFile$Date >= as.Date("2007-02-01") & DataFile$Date<=as.Date("2007-02-02"),]
 
 ##plot and save graph
