@@ -1,25 +1,15 @@
-plot3<-function(){
-fn <- "household_power_consumption.txt"
+plot3<-function() {
+##make sure you set directory to file where the file:ExData1 is located
+FileName <- read.table("ExData1/household_power_consumption.txt", skip = 66637, nrows = 69517 - 66637, sep = ";", na.strings = "?", col.names = c("Date", "Time", "Global_active_power", "Global_reactive_power", "Voltage", "Global_intensity", "Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+FileName$DateTime <- strptime(paste(FileName$Date, FileName$Time, sep=" "), "%d/%m/%Y %H:%M:%S")
 
-##column names
-colNames = c("date", "time", "globalActivePower", "globalReactivePower", "voltage", "globalIntensity", "subMetering1", "subMetering2", "subMetering3")
-colClasses = c("character", "character", rep("numeric",7) )
+png(filename="plot3.png", width=480, height=480)
 
-##read file
-df <- read.table(fn, header=TRUE, sep=";", col.names=colNames, colClasses=colClasses, na.strings="?")
+plot(FileName$DateTime, FileName$Sub_metering_1, ylab="Energy sub metering", xlab="", type="n")
 
-##convert to Date type, then filter
-df$date = as.Date(df$date, format="%d/%m/%Y")
-df = df[df$date >= as.Date("2007-02-01") & df$date<=as.Date("2007-02-02"),]
-
-##plot and save graph
-png(filename="plot3.png", width=480, height=480, units="px")
-with(df, {
-    plot(subMetering1,type="l", xaxt="n", xlab="", ylab="Energy sub metering")
-    lines(x=subMetering2, col="red")
-    lines(x=subMetering3, col="blue")
-    })
-axis(1, at=c(1, as.integer(nrow(df)/2), nrow(df)), labels=c("Thu", "Fri", "Sat"))
-legend("topright", lty=1, col=c("black", "red", "blue"), legend=c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
+lines(FileName$DateTime, FileName$Sub_metering_1, type= "l", col="Black")
+lines(FileName$DateTime, FileName$Sub_metering_2, type= "l", col="red")
+lines(FileName$DateTime, FileName$Sub_metering_3, type= "l", col="blue")
 dev.off()
 }
+plot3()
